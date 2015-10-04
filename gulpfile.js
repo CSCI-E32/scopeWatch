@@ -3,6 +3,7 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var jshint = require('gulp-jshint');
 var connect = require('gulp-connect');
+var Server = require('karma').Server;
 
 gulp.task('buildApp', function(){
   return gulp.src('./src/js/**/*.js')
@@ -38,6 +39,16 @@ gulp.task('buildHTML', function(){
 gulp.task('build', ['buildApp', 'buildVendor', 'buildHTML']);
 
 
+gulp.task('karma', function (done) {
+  new Server({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done).start();
+});
+
+gulp.task('test', ['karma']);
+
+
 gulp.task('connect', function(){
   connect.server({
     root: 'build',
@@ -46,11 +57,10 @@ gulp.task('connect', function(){
 });
 
 gulp.task('watch', function(){
-  gulp.watch('./src/**/*', ['build'], function(){
-    console.log("should be reloading");
+  gulp.watch('./src/**/*', ['build', 'test'], function(){
     connect.reload();
   });
 });
 
 
-gulp.task('default', ['build', 'watch', 'connect']);
+gulp.task('default', ['build', 'test', 'watch', 'connect']);

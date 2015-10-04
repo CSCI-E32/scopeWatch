@@ -38,6 +38,13 @@ describe('numSvc', function(){
       numSvc = $injector.get('numSvc');
     });
   });
+  it('should initialize to the same value as numFact', function(){
+    var numFact;
+    inject(function($injector){
+      numFact = $injector.get('numFact');
+    });
+    expect(numSvc.num).toBe(numFact);
+  });
   describe('addOne', function(){
     it('should add one to the value of num', function(){
       expect(numSvc.num).toBe(2);
