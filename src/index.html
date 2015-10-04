@@ -14,6 +14,7 @@
   <div ng-controller="ControllerOne as oneCtrl">
     <label for="one">One: </label>
     <input type="text" id="one" ng-model="oneCtrl.num"/>
+    <button type="button" ng-click="oneCtrl.addOne()">Add One</button>
   </div>
   <div ng-controller="ControllerTwo as twoCtrl">
     {{ twoCtrl.num }}
