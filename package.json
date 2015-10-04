@@ -1,0 +1,22 @@
+{
+  "name": "week9fun",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "JaZahn",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.9.8",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-karma": "0.0.5",
+    "gulp-open": "^1.0.0",
+    "gulp-uglify": "^1.4.1",
+    "karma": "^0.13.10"
+  }
+}
