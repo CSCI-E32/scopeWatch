@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html ng-app="myApp" lang="en">
+<html ng-app="scopeWatch" lang="en">
 <head>
   <meta charset="utf-8" />
 
-  <title>myApp</title>
+  <title>scopeWatch</title>
 
   <link rel="stylesheet" href="styles.css" />
   <script src="lib.js"></script>
@@ -11,11 +11,13 @@
 </head>
 <body>
   <h1>Hello</h1>
+
   <div ng-controller="ControllerOne as oneCtrl">
     <label for="one">One: </label>
     <input type="text" id="one" ng-model="oneCtrl.num"/>
     <button type="button" ng-click="oneCtrl.addOne()">Add One</button>
   </div>
+
   <div ng-controller="ControllerTwo as twoCtrl">
     {{ twoCtrl.num }}
   </div>

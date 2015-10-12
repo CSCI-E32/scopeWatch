@@ -1,26 +1,31 @@
-var app = angular.module('myApp', []);
+var app = angular.module('scopeWatch', []);
 
-app.controller('ControllerOne', ['$scope', 'numSvc', function($scope, numSvc){
-  this.num = numSvc.num;
+app.controller('ControllerOne', ['$scope', 'numFact', function($scope, numFact){
+  this.num = numFact.num;
   var that = this;
 
-  $scope.$watch(function(){ return that.num; }, function (newVal, oldVal) {
-    numSvc.num = newVal;
+  $scope.$watch(function(){
+    return that.num;
+  }, function (newVal, oldVal) {
+    numFact.num = newVal;
   });
 
   this.addOne = function(){
-    numSvc.addOne();
+    this.num++;
   };
 
 
 }]);
 
-app.controller('ControllerTwo', ['$scope', 'numSvc', function($scope, numSvc){
-  this.num = numSvc.num;
+app.controller('ControllerTwo', ['$scope', 'numFact', function($scope, numFact){
+  this.num = numFact.num;
   var that = this;
 
-  $scope.$watch(function(){ return numSvc.num; }, function (newVal, oldVal) {
-    that.num = numSvc.num
+
+  $scope.$watch(function(){
+    return numFact.num;
+  }, function (newVal, oldVal) {
+    that.num = numFact.num
   });
 
 
@@ -29,7 +34,9 @@ app.controller('ControllerTwo', ['$scope', 'numSvc', function($scope, numSvc){
 app.value('numVal', 1);
 
 app.factory('numFact', ['numVal', function(numVal){
-  return numVal + 1;
+  return {
+    num: numVal + 1
+  };
 }]);
 
 app.service('numSvc', ['numFact', function(numFact){

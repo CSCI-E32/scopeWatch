@@ -1,6 +1,6 @@
 describe('numVal', function(){
   var numVal;
-  beforeEach(module('myApp'));
+  beforeEach(module('scopeWatch'));
   beforeEach(function(){
     inject(function($injector) {
       numVal = $injector.get('numVal');
@@ -13,7 +13,7 @@ describe('numVal', function(){
 
 describe('numFact', function(){
   var numFact;
-  beforeEach(module('myApp'));
+  beforeEach(module('scopeWatch'));
   beforeEach(function(){
     module(function($provide){
       $provide.value('numVal', 1);
@@ -29,7 +29,7 @@ describe('numFact', function(){
 
 describe('numSvc', function(){
   var numSvc;
-  beforeEach(module('myApp'));
+  beforeEach(module('scopeWatch'));
   beforeEach(function(){
     module(function($provide){
       $provide.factory('numFact', function(){ return 2; });

@@ -9,7 +9,8 @@ gulp.task('buildApp', function(){
   return gulp.src('./src/js/**/*.js')
     .pipe(concat('app.js'))
     .pipe(uglify())
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest('build'))
+    .pipe(connect.reload());
 });
 
 gulp.task('buildVendor', function(){
@@ -26,8 +27,8 @@ gulp.task('buildCSS', function(){
       './bower_components/bootstrap/dist/css/bootstrap.css',
       './src/css/**/*.css'])
     .pipe(concat('styles.css'))
-    .pipe(uglify())
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest('build'))
+    .pipe(connect.reload());
 });
 
 gulp.task('buildHTML', function(){
@@ -36,7 +37,7 @@ gulp.task('buildHTML', function(){
     .pipe(connect.reload());
 });
 
-gulp.task('build', ['buildApp', 'buildVendor', 'buildHTML']);
+gulp.task('build', ['buildApp', 'buildCSS', 'buildVendor', 'buildHTML']);
 
 
 gulp.task('karma', function (done) {
@@ -57,9 +58,9 @@ gulp.task('connect', function(){
 });
 
 gulp.task('watch', function(){
-  gulp.watch('./src/**/*', ['build', 'test'], function(){
-    connect.reload();
-  });
+  gulp.watch('./src/**/*.html', ['buildHTML']);
+  gulp.watch('./src/**/*.css', ['buildCSS']);
+  gulp.watch('./src/**/*.js', ['buildApp']);
 });
 
 
