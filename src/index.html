@@ -10,16 +10,22 @@
   <script src="app.js"></script>
 </head>
 <body>
-  <h1>Hello</h1>
+  <h1>Hello Scope</h1>
 
-  <div ng-controller="ControllerOne as oneCtrl">
-    <label for="one">One: </label>
-    <input type="text" id="one" ng-model="oneCtrl.num"/>
-    <button type="button" ng-click="oneCtrl.addOne()">Add One</button>
+  <div class="well" ng-controller="ControllerOne as oneCtrl">
+    <fieldset>
+      <legend>ControllerOne</legend>
+      <label for="one">One: </label>
+      <input type="text" id="one" ng-model="oneCtrl.num"/>
+      <button type="button" ng-click="oneCtrl.addOne()">Add One</button>
+    </fieldset>
   </div>
 
-  <div ng-controller="ControllerTwo as twoCtrl">
-    {{ twoCtrl.num }}
+  <div class="well" ng-controller="ControllerTwo as twoCtrl">
+    <fieldset>
+      <legend>ControllerTwo</legend>
+      {{ twoCtrl.num }}
+    </fieldset>
   </div>
 
 </body>
