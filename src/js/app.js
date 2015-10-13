@@ -32,7 +32,8 @@ app.value('numVal', 1);
 
 app.factory('numFact', ['numVal', function(numVal){
   return {
-    num: numVal + 1
+    num: numVal + 1,
+    somethingelse: 22
   };
 }]);
 
@@ -42,4 +43,6 @@ app.service('numSvc', ['numFact', function(numFact){
   this.addOne = function(){
     this.num++;
   };
+
+//  return this;
 }]);

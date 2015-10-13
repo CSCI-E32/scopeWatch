@@ -23,7 +23,7 @@ describe('numFact', function(){
     });
   });
   it('should be one more than numVal', function(){
-    expect(numFact).toBe(2);
+    expect(numFact.num).toBe(2);
   });
 });
 
@@ -32,7 +32,7 @@ describe('numSvc', function(){
   beforeEach(module('scopeWatch'));
   beforeEach(function(){
     module(function($provide){
-      $provide.factory('numFact', function(){ return 2; });
+      $provide.factory('numFact', function(){ return {num: 2}; });
     });
     inject(function($injector){
       numSvc = $injector.get('numSvc');
@@ -43,13 +43,15 @@ describe('numSvc', function(){
     inject(function($injector){
       numFact = $injector.get('numFact');
     });
-    expect(numSvc.num).toBe(numFact);
+    expect(numSvc.num).toBe(numFact.num);
   });
   describe('addOne', function(){
     it('should add one to the value of num', function(){
+      console.log(numSvc.num);
       expect(numSvc.num).toBe(2);
       numSvc.addOne();
       expect(numSvc.num).toBe(3);
+
     });
   });
 });
