@@ -2,15 +2,16 @@ var app = angular.module('scopeWatch', []);
 
 app.controller('ControllerOne', ['$scope', 'numSvc', function($scope, numSvc){
   this.num = numSvc.num;
-  var that = this;
+  var vm = this;
 
   $scope.$watch(function(){
-    return that.num;
+    return vm.num;
   }, function (newVal, oldVal) {
     numSvc.num = newVal;
   });
 
-  this.addOne = function(){
+  vm.addOne = function(){
+    console.log("controller addOne");
     this.num++;
   };
 
@@ -18,12 +19,12 @@ app.controller('ControllerOne', ['$scope', 'numSvc', function($scope, numSvc){
 
 app.controller('ControllerTwo', ['$scope', 'numSvc', function($scope, numSvc){
   this.num = numSvc.num;
-  var that = this;
+  var vm = this;
 
   $scope.$watch(function(){
     return numSvc.num;
   }, function (newVal, oldVal) {
-    that.num = numSvc.num
+    vm.num = newVal;
   });
 
 }]);
@@ -41,6 +42,7 @@ app.service('numSvc', ['numFact', function(numFact){
   this.num = numFact.num;
 
   this.addOne = function(){
+    console.log("numScv.addOne()");
     this.num++;
   };
 

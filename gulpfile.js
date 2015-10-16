@@ -60,7 +60,7 @@ gulp.task('connect', function(){
 gulp.task('watch', function(){
   gulp.watch('./src/**/*.html', ['buildHTML']);
   gulp.watch('./src/**/*.css', ['buildCSS']);
-  gulp.watch('./src/**/*.js', ['buildApp']);
+  gulp.watch('./src/**/*.js', ['buildApp', 'test']);
 });
 
 

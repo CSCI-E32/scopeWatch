@@ -47,9 +47,36 @@ describe('numSvc', function(){
   });
   describe('addOne', function(){
     it('should add one to the value of num', function(){
-      console.log(numSvc.num);
       expect(numSvc.num).toBe(2);
       numSvc.addOne();
+      expect(numSvc.num).toBe(3);
+
+    });
+  });
+});
+
+describe('ControllerOne', function(){
+  var controllerOne;
+  var scope;
+  beforeEach(module('scopeWatch'));
+  beforeEach(function(){
+    module(function($provide){
+      $provide.factory('numFact', function(){ return {num: 2}; });
+    });
+    inject(function($controller, $rootScope){
+      scope = $rootScope.$new();
+      controllerOne = $controller('ControllerOne', {$scope: scope});
+    });
+  });
+  describe("addOne", function(){
+    it('should update the numSvc value when ControllerOne.addOne is called', function(){
+      var numScv;
+      inject(function($injector){
+        numSvc = $injector.get('numSvc');
+      });
+      expect(numSvc.num).toBe(2);
+      controllerOne.addOne();
+      scope.$digest();
       expect(numSvc.num).toBe(3);
 
     });
